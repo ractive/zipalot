@@ -1,0 +1,10 @@
+[OPTIONS]
+CONTENTS=IDH_210
+REPORT=NO
+LCID=0x407 0x0 ; German - (Germany)
+COMPRESS=12 Hall Zeck
+CNT=Untitled.cnt
+[FILES]
+Untitled.rtf
+[WINDOWS]
+main="",(5,5,360,600),27904,(r11206655),(r13160660),f1

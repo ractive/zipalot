@@ -1,0 +1,45 @@
+;
+; "Command Prompt Here" PowerToy
+;
+; Copyright 1996 Microsoft Corporation
+;
+[version]
+signature="$CHICAGO$"
+
+[ZipALotInstall]
+CopyFiles = ZipALot.Files.Inf
+AddReg    = ZipALot.Reg
+
+[DefaultInstall]
+CopyFiles = ZipALot.Files.Inf
+AddReg    = ZipALot.Reg
+
+[DefaultUnInstall]
+DelFiles  = ZipALot.Files.Inf
+DelReg    = ZipALot.Reg
+
+[SourceDisksNames]
+55="Unzipalot","",1
+
+[SourceDisksFiles]
+ZipALot.INF=55
+
+[DestinationDirs]
+ZipALot.Files.Inf = 17
+
+[ZipALot.Files.Inf]
+ZipALot.inf
+
+[ZipALot.Reg]
+HKLM,%UDHERE%
+HKLM,%UDHERE%,DisplayName,,"%ZipALotName%"
+HKLM,%UDHERE%,UninstallString,,"%10%\rundll.exe setupx.dll,InstallHinfSection DefaultUninstall 132 %17%\ZipALot.inf"
+HKCR,Directory\Shell\ZipALot,,,"%ZipALotAccel%"
+HKCR,Directory\Shell\ZipALot\command,,,"""%01%\ZipALot.exe"" ""%1"""
+HKCR,Drive\Shell\ZipALot,,,"%ZipALotAccel%"
+HKCR,Drive\Shell\ZipALot\command,,,"""%01%\ZipALot.exe"" ""%1"""
+
+[Strings]
+ZipALotName="Unzipalot this directory"
+ZipALotAccel="Unzipalot"
+UDHERE="Software\Microsoft\Windows\CurrentVersion\Uninstall\zipalotshell"

@@ -1,0 +1,864 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ZipALot.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PASSWORDDLG DIALOGEX 0, 0, 186, 98
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter Password"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_PASSWORD,7,40,172,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Hide typing",IDC_HIDE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,59,51,10
+    DEFPUSHBUTTON   "OK",IDOK,33,78,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,78,50,14
+    LTEXT           "",IDC_MESSAGE,7,7,172,13,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    LTEXT           "",IDC_FILENAME,7,24,172,13,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PASSWORDDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UNZIPDLG DIALOGEX 0, 0, 235, 285
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Extraction progress..."
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",PBS_SMOOTH,
+                    10,118,215,9
+    LTEXT           "",IDC_STATICFILENAME,53,40,172,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    LTEXT           "",IDC_FILEOF,10,103,215,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    CONTROL         "Animate1",IDC_ANIMATION,"SysAnimate32",ACS_CENTER | 
+                    ACS_TRANSPARENT | ACS_AUTOPLAY | WS_TABSTOP,10,64,215,20,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Current file:",IDC_STATIC,10,42,36,8
+    LTEXT           "Source:",IDC_STATIC,10,10,26,8
+    LTEXT           "Target:",IDC_STATIC,10,26,24,8
+    LTEXT           "",IDC_SOURCE,53,8,172,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    LTEXT           "",IDC_TARGET,53,24,172,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    GROUPBOX        "Progress",IDC_STATIC,4,92,227,43
+    GROUPBOX        "",IDC_STATIC,4,0,227,57
+    LTEXT           "Extracted files:",IDC_STATIC,10,165,47,8
+    GROUPBOX        "",IDC_DETAILGROUP,4,155,227,127
+    CONTROL         "Tree1",IDC_FILETREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_LINESATROOT | TVS_DISABLEDRAGDROP | TVS_INFOTIP | 
+                    TVS_FULLROWSELECT | TVS_NONEVENHEIGHT | WS_TABSTOP,10,
+                    176,215,103,WS_EX_STATICEDGE
+    PUSHBUTTON      "Details >>>",IDC_SHOWDETAILS,181,143,50,12,BS_FLAT
+    GROUPBOX        "",IDC_STATIC,4,56,227,35
+    CONTROL         "Close when done",IDC_CLOSE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,144,71,10
+    PUSHBUTTON      "&Cancel",IDC_CANCEL,92,143,50,12
+END
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 207, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ZipALot"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,163,44,20,20
+    LTEXT           "ZipALot Version 3.21\r\n25.. May 2001",IDC_STATIC,7,7,
+                    119,18,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,150,7,50,14,WS_GROUP
+    LTEXT           "(c) by Jean-Pierre Bergamin",IDC_MAIL,7,31,137,8
+    LTEXT           "For further updates, please visit:",IDC_STATIC,7,62,101,
+                    8
+    LTEXT           "http://www.ractive.ch/gpl/zipalot.html",IDC_HOMEPAGE,7,
+                    74,122,8
+    LTEXT           "This software is licensed under the GPL",IDC_STATIC,7,
+                    49,129,8
+    LTEXT           "mailto:james@ractive.ch",IDC_EMAIL,7,40,78,8
+END
+
+IDD_ZIPALOT_DIALOG DIALOGEX 0, 0, 452, 153
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "ZipALot"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_SOURCEDIR,46,37,154,51,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "...",IDC_SOURCEPICKER,204,36,15,14,BS_ICON | BS_FLAT
+    EDITTEXT        IDC_TARGETDIR,46,60,154,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_TARGETPICKER,204,59,15,14,BS_ICON | BS_FLAT
+    CONTROL         "Lock target directory",IDC_LOCKTARGET,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,46,76,81,10
+    PUSHBUTTON      "&Unzip",IDOK,16,108,42,28,BS_ICON | BS_CENTER | 
+                    BS_VCENTER
+    PUSHBUTTON      "...",IDC_CHECKFILES,68,109,42,28,BS_ICON
+    PUSHBUTTON      "     Filter settings >>>",IDC_FILTERBUTTON,156,8,67,11,
+                    BS_FLAT
+    LTEXT           "Extract all Archives",IDC_STATIC,11,10,61,8,
+                    SS_CENTERIMAGE
+    GROUPBOX        "",IDC_STATIC,5,21,221,129
+    GROUPBOX        "",IDC_STATIC,5,2,221,20
+    GROUPBOX        "",IDC_STATIC,8,24,215,70
+    GROUPBOX        "",IDC_STATIC,8,92,215,55
+    PUSHBUTTON      "Source:",IDC_SOURCESHOW,11,37,31,12,BS_FLAT
+    PUSHBUTTON      "Target:",IDC_TARGETSHOW,11,60,31,12,BS_FLAT
+    CONTROL         "",IDC_PROPSHEET,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,
+                    233,6,215,147
+    CONTROL         "Use temp directory",IDC_USETEMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,128,76,75,10
+    PUSHBUTTON      "Warez Wizard...",IDC_WAREZWIZARD,120,109,42,28,BS_ICON
+    PUSHBUTTON      "Config...",IDC_CONFIG,172,108,42,28,BS_ICON
+END
+
+IDD_FILECHECK DIALOGEX 0, 0, 303, 290
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Unzip File List"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_FILELIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_SHAREIMAGELISTS | 
+                    WS_TABSTOP,8,20,284,97,WS_EX_STATICEDGE
+    LTEXT           "",IDC_TOTAL,8,123,284,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    CONTROL         "List1",IDC_ZIPDETAIL,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_SHAREIMAGELISTS | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,8,167,284,97,
+                    WS_EX_STATICEDGE
+    LTEXT           "",IDC_ZIPTOTAL,8,269,284,12,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+    LTEXT           "ZIP-file details:",IDC_STATIC,8,154,47,8
+    GROUPBOX        "",IDC_DETAILGROUP,4,145,295,141
+    GROUPBOX        "",IDC_STATIC,4,0,295,141
+    LTEXT           "Found ZIP-files:",IDC_STATIC,8,8,50,8
+    LTEXT           "Click on a file to see the details...",IDC_STATIC,100,8,
+                    104,8
+    PUSHBUTTON      "^^",IDC_HIDEINFO,269,153,23,9,BS_ICON | BS_FLAT
+    DEFPUSHBUTTON   "Full output list...",IDC_FULLLIST,221,7,70,11
+END
+
+IDD_HELPDLG DIALOG DISCARDABLE  0, 0, 322, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,136,141,50,14
+    ICON            IDR_MAINFRAME,IDC_STATIC,7,7,21,20
+    LTEXT           "ZipALot help",IDC_STATIC,41,15,41,8
+    LTEXT           "Overall:",IDC_STATIC,7,38,25,8
+    LTEXT           "ZipALot extracts zip files from one directory to another. The special thing is, that it can unzip a bunch of files and filter in- and output.",
+                    IDC_STATIC,7,50,308,26
+    LTEXT           "Filters:",IDC_STATIC,7,80,21,8
+    LTEXT           "If you don't apply any filters, ALL ZIP-files from the source directory are extracted to the target directory.\r\n",
+                    IDC_STATIC,7,91,193,32
+END
+
+IDD_POSTPROCESS DIALOG DISCARDABLE  0, 0, 274, 174
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Further actions"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,71,153,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,151,153,50,14
+    LTEXT           "Files have been found that can be processed:",
+                    IDC_STATIC,7,7,146,8
+    CONTROL         "List2",IDC_ACTIONS,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,34,238,91
+    PUSHBUTTON      "up",IDC_UP,251,62,16,14,BS_ICON
+    PUSHBUTTON      "dn",IDC_DOWN,251,94,16,14,BS_ICON
+    PUSHBUTTON      "Select all",IDC_SELECTALL,7,131,50,14
+    PUSHBUTTON      "Unselect all",IDC_UNSELECTALL,98,131,50,14
+    PUSHBUTTON      "Invert",IDC_INVERT,195,131,50,14
+    LTEXT           "Check the actions you want to perform and bring them in the desired order",
+                    IDC_STATIC,7,19,233,8
+END
+
+IDD_EXPERTFILTER DIALOG DISCARDABLE  0, 0, 208, 127
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Expert"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Archives:",IDC_FILTERCHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,27,55,11
+    EDITTEXT        IDC_FILTER,72,25,126,14,ES_AUTOHSCROLL
+    CONTROL         "Extract:",IDC_EXTRACTFILTERCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,44,40,10
+    EDITTEXT        IDC_EXTRACTFILTER,72,42,126,14,ES_AUTOHSCROLL
+    CONTROL         "Don't extract:",IDC_DONTEXTRACTFILTERCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,60,58,10
+    EDITTEXT        IDC_DONTEXTRACTFILTER,72,59,126,14,ES_AUTOHSCROLL
+    CONTROL         "Case insensitive filters",IDC_CASEINSENSITIV,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,75,85,10
+    CONTROL         "Overwrite files",IDC_OVERWRITE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,93,60,10
+    CONTROL         "Extract only newer",IDC_ONLYNEWER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,110,93,70,10
+    CONTROL         "Recreate directories",IDC_RECREATEDIR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,108,79,10
+    CONTROL         "Directory for every file",IDC_OWNDIR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,110,108,80,10
+    GROUPBOX        "",IDC_STATIC,3,0,204,17
+    LTEXT           "Filter settings (separate multiple filters with ""/"")",
+                    IDC_STATIC,14,6,145,8
+    GROUPBOX        "",IDC_FILTERGROUP,3,15,204,110
+    GROUPBOX        "",IDC_STATIC,6,17,198,71
+    GROUPBOX        "",IDC_STATIC,6,85,198,36
+END
+
+IDD_SIMPLEFILTER DIALOG DISCARDABLE  0, 0, 208, 126
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Simple"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "ZIP",IDC_EXTRACTZIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,13,27,10
+    CONTROL         "ACE",IDC_EXTRACTACE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,35,30,10
+    CONTROL         "RAR",IDC_EXTRACTRAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,24,31,10
+    GROUPBOX        "Process Archives:",IDC_STATIC,5,2,203,54
+    GROUPBOX        "Only extract these filetypes:",IDC_STATIC,5,58,203,65
+    CONTROL         "Images",IDC_IMAGES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,70,39,10
+    CONTROL         "Documents",IDC_DOCS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,82,52,10
+    CONTROL         "Web documents",IDC_WEBDOCS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,94,68,10
+    CONTROL         "Musicfiles",IDC_MUSIC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,133,70,47,10
+    CONTROL         "Videofiles",IDC_VIDEO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,133,82,46,10
+    CONTROL         "Programs",IDC_PROGRAMS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,133,94,45,10
+    LTEXT           "All files will be extracted if nothing is selected here.",
+                    IDC_STATIC,11,109,159,8
+    PUSHBUTTON      "Button1",IDC_WIZTIP,189,106,15,14,BS_ICON | BS_FLAT
+END
+
+IDD_WIZ1 DIALOG DISCARDABLE  0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Source directory"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_WIZSOURCE,103,25,173,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "",IDC_WIZPICKSOURCE,279,25,15,14,BS_ICON | BS_FLAT
+    LTEXT           "Enter the download directory of your warez:",IDC_STATIC,
+                    103,10,137,8
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    PUSHBUTTON      "Button1",IDC_WIZTIP,279,94,15,14,BS_ICON | BS_FLAT
+END
+
+IDD_WIZ2 DIALOG DISCARDABLE  0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Target directory"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    EDITTEXT        IDC_WIZTARGET,103,25,173,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "",IDC_WIZPICKSOURCE,279,25,15,14,BS_ICON | BS_FLAT
+    LTEXT           "Enter the target directory or choose the temp directory:",
+                    IDC_STATIC,103,10,172,8
+    CONTROL         "Use temporary directory",IDC_WIZUSETEMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,103,45,90,10
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    LTEXT           "Click on ""Next"" to extract the files",IDC_STATIC,103,
+                    97,107,8
+    PUSHBUTTON      "Button1",IDC_WIZTIP,279,94,15,14,BS_ICON | BS_FLAT
+END
+
+IDD_WIZ3 DIALOGEX 0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Info files"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LISTBOX         IDC_INFOFILES,102,34,194,74,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Info files were found. Doubleclick to read them.",
+                    IDC_STATIC,102,23,149,8
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    CONTROL         "",IDC_WIZCURDIR,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    102,10,194,11,WS_EX_STATICEDGE
+END
+
+IDD_WIZ4 DIALOGEX 0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Further actions"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    LTEXT           "Choose an file and click here:",IDC_TITLE,102,99,94,8
+    LTEXT           "Extract to:",IDC_STATIC,102,83,33,8
+    EDITTEXT        IDC_WIZTARGET,141,80,137,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "",IDC_WIZPICKSOURCE,281,80,15,14,BS_ICON | BS_FLAT | 
+                    WS_DISABLED
+    CONTROL         "List1",IDC_FILES,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,102,21,194,56
+    CONTROL         "",IDC_WIZCURDIR,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    102,9,194,11,WS_EX_STATICEDGE
+    DEFPUSHBUTTON   "Do it...",IDC_WIZTAKEACTION,200,98,78,12
+    PUSHBUTTON      "Button1",IDC_WIZTIP,281,96,15,14,BS_ICON | BS_FLAT
+END
+
+IDD_WIZUNZIP DIALOGEX 0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Extracting..."
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",PBS_SMOOTH,
+                    107,95,187,11
+    LTEXT           "Archive file:",IDC_WIZCURFILE,107,67,38,8
+    CONTROL         "",IDC_CURZIPFILE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    147,67,147,10,WS_EX_STATICEDGE
+    LTEXT           "Extracting:",IDC_WIZEXTRACTING,107,78,34,8
+    CONTROL         "",IDC_CURFILE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,147,
+                    78,147,10,WS_EX_STATICEDGE
+    CONTROL         "Animate1",IDC_ANIMATE,"SysAnimate32",ACS_CENTER | 
+                    ACS_TRANSPARENT | ACS_AUTOPLAY | WS_TABSTOP,101,9,195,30,
+                    WS_EX_STATICEDGE
+    LTEXT           "Source:",IDC_STATIC,107,45,26,8
+    LTEXT           "Target:",IDC_STATIC,107,56,24,8
+    CONTROL         "",IDC_WIZSOURCE,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    147,45,147,10,WS_EX_STATICEDGE
+    CONTROL         "",IDC_WIZTARGET,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    147,56,147,10,WS_EX_STATICEDGE
+    GROUPBOX        "",IDC_STATIC,101,37,196,73
+END
+
+IDD_WIZERROR DIALOG DISCARDABLE  0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Error"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    LTEXT           "Error occured in file:",IDC_STATIC,105,13,64,8
+    LTEXT           "",IDC_ERRORFILE,177,13,109,8
+    LTEXT           "Error:",IDC_STATIC,105,29,18,8
+    LTEXT           "",IDC_ERROR,105,41,184,8
+END
+
+IDD_WIZEND DIALOG DISCARDABLE  0, 0, 306, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "End"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,7,20,20
+    GROUPBOX        "",IDC_STATIC,98,3,202,110
+    LTEXT           "Everything done..... :-)",IDC_STATIC,105,15,70,8
+    LTEXT           "Enjoy your new software.",IDC_STATIC,105,32,80,8
+    CONTROL         "Delete unpacked files",IDC_WIZDELTEMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,105,50,85,10
+    PUSHBUTTON      "Button1",IDC_WIZTIP,279,94,15,14,BS_ICON | BS_FLAT
+END
+
+IDD_WHATIFDLG DIALOGEX 0, 0, 380, 260
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "File listing"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,164,239,50,14
+    CONTROL         "List1",IDC_FILELIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHAREIMAGELISTS | WS_TABSTOP,7,23,366,194,
+                    WS_EX_STATICEDGE
+    LTEXT           "",IDC_INFO,7,7,366,13,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    LTEXT           "",IDC_STATUS,7,220,366,13,SS_CENTERIMAGE,
+                    WS_EX_STATICEDGE
+END
+
+IDD_TIPDLG DIALOG DISCARDABLE  0, 0, 282, 128
+STYLE DS_CONTROL | WS_POPUP | WS_DISABLED
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDD_CONFIG DIALOG DISCARDABLE  0, 0, 233, 263
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configuration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_STARTSOURCE,13,30,190,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "...",IDC_SOURCEPICKER,206,30,15,14,BS_ICON | BS_FLAT
+    EDITTEXT        IDC_STARTTARGET,13,65,190,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "...",IDC_TARGETPICKER,206,65,15,14,BS_ICON | BS_FLAT
+    EDITTEXT        IDC_INSTALLDIR,13,97,190,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "...",IDC_INSTALLPICKER,206,97,15,14,BS_ICON | BS_FLAT
+    EDITTEXT        IDC_UNZIPPED,147,137,62,14,ES_AUTOHSCROLL
+    CONTROL         "Close the extraction window if done",IDC_CLOSEDONE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,153,127,10
+    CONTROL         "Target locked at startup",IDC_TARGETLOCKED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,166,91,10
+    DEFPUSHBUTTON   "OK",IDOK,7,242,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,176,242,50,14
+    LTEXT           "Always open this target-directory at startup:",
+                    IDC_STATIC,13,54,136,8
+    LTEXT           "Always open this source-directory at startup:",
+                    IDC_STATIC,13,19,139,8
+    LTEXT           "Standard installation directory:",IDC_STATIC,13,86,95,8
+    GROUPBOX        "Directories",IDC_STATIC,7,7,219,114
+    LTEXT           "Name-appendix of target subdirectory:",IDC_STATIC,13,
+                    138,120,8
+    GROUPBOX        "Miscellaneous",IDC_STATIC,7,127,219,89
+    CONTROL         "Show the filter settings at startup",IDC_FILTERSETTINGS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,179,118,10
+    PUSHBUTTON      "Delete history",IDC_DELETEHIST,147,196,62,14
+    LTEXT           "Delete the source directory history:",IDC_STATIC,13,199,
+                    110,8
+    PUSHBUTTON      "Check for new version",IDC_NEWVERSION,66,222,102,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_UNZIPDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 231
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 282
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_ZIPALOT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 448
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_FILECHECK, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 299
+        BOTTOMMARGIN, 286
+    END
+
+    IDD_HELPDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 315
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
+    END
+
+    IDD_POSTPROCESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 167
+    END
+
+    IDD_EXPERTFILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 125
+    END
+
+    IDD_SIMPLEFILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 123
+    END
+
+    IDD_WIZ1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WIZ2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WIZ3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WIZ4, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WIZUNZIP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WIZERROR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WIZEND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_WHATIFDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 373
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 253
+    END
+
+    IDD_TIPDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 275
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 121
+    END
+
+    IDD_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 226
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 256
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\ZipALot.ico"
+IDI_CHANGEDIR           ICON    DISCARDABLE     "res\\changedi.ico"
+IDI_SHOW                ICON    DISCARDABLE     "res\\show.ico"
+IDI_HIDEINFO            ICON    DISCARDABLE     "res\\hideinfo.ico"
+IDI_CHECKOUT            ICON    DISCARDABLE     "res\\checkout.ico"
+IDI_UP                  ICON    DISCARDABLE     "res\\up.ico"
+IDI_DOWN                ICON    DISCARDABLE     "res\\down.ico"
+IDR_NFO                 ICON    DISCARDABLE     "res\\nfo.ico"
+IDI_TIP                 ICON    DISCARDABLE     "res\\tip.ico"
+IDI_WIZARD              ICON    DISCARDABLE     "res\\wizard.ico"
+IDI_EXTRACT             ICON    DISCARDABLE     "res\\extract.ico"
+IDI_CONFIG              ICON    DISCARDABLE     "res\\config.ico"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,0,0
+ PRODUCTVERSION 3,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Licensed under the GPL\0"
+            VALUE "CompanyName", "@ractive Software\0"
+            VALUE "FileDescription", "ZipALot\0"
+            VALUE "FileVersion", "3.21\0"
+            VALUE "InternalName", "ZipALot\0"
+            VALUE "LegalCopyright", "Copyright (C) 2000 by J.P. Bergamin under the GPL\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ZipALot.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "ZipALot\0"
+            VALUE "ProductVersion", "3.21\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AVI
+//
+
+IDR_EXTRACT             AVI     DISCARDABLE     "res\\extract.avi"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ERRORIMAGES         BITMAP  DISCARDABLE     "res\\errorima.bmp"
+IDB_WIZARD              BITMAP  DISCARDABLE     "res\\wizard.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_NFOACCEL ACCELERATORS DISCARDABLE 
+BEGIN
+    VK_NEXT,        ID_PGDOWN,              VIRTKEY, NOINVERT
+    VK_PRIOR,       ID_PGUP,                VIRTKEY, NOINVERT
+    VK_UP,          ID_UP,                  VIRTKEY, NOINVERT
+    VK_UP,          ID_DOWN,                VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About ZipALot..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_DONTEXTRACTFILTER   "These files won't be extracted from the processed archives"
+    IDC_FILTERCHECK         "Apply this filter rule?"
+    IDC_FILTER              "1st rule for ZIP files, 2nd for RAR and 3rd for ACE"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_TARGETDIR           "Enter the target directory"
+    IDC_SOURCEDIR           "Enter the source directory"
+    IDC_SOURCEPICKER        "Select the source directory"
+    IDC_TARGETPICKER        "Select the target directory"
+    IDC_OVERWRITE           "Overwrite existing files in the target directory?"
+    IDC_SOURCESHOW          "Show the source-directory in explorer"
+    IDC_TARGETSHOW          "Show the target-directory in explorer"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_CHECKFILES          "View the files that will be extracted"
+    IDC_EXTRACTFILTER       "Only these files will be extracted from the processed archives"
+    IDC_FILTERBUTTON        "Open the filter settings..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDOK                    "Extract the files..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_ONLYNEWER           "Extract only files that are newer than existing ones"
+    IDC_RECREATEDIR         "Recreate the directory structure of the archives"
+    IDC_OWNDIR              "Create an own subdirectory for every archive"
+    IDC_LOCKTARGET          "Don't change the target directory when the source directory changes"
+    IDS_ALWAYSONTOP         "Always on &top"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_UP                  "Move the selected item upwards"
+    IDC_DOWN                "Move the selected item downwards"
+    IDC_EXTRACTZIP          "Extract all ZIP files"
+    IDC_EXTRACTACE          "Extract all ACE archives"
+    IDC_EXTRACTRAR          "Extract all RAR archives"
+    IDC_IMAGES              "Extract all images"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_DOCS                "Extract all tex-documents"
+    IDC_WEB                 "Extract all web-documents"
+    IDC_MUSIC               "Extract all music files"
+    IDC_VIDEO               "Extract all video files"
+    IDC_PROGRAMS            "Extract all executable programs"
+    IDC_WAREZWIZARD         "Warez Wizard"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_NFO                 "NFO Viewer"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_CONFIG              "Configuration..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\ZipALot.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

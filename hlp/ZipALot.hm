@@ -1,0 +1,39 @@
+ 
+// Commands (ID_* and IDM_*) 
+HIDM_ABOUTBOX                           0x10010
+HIDM_ALWAYSONTOP                        0x10020
+HID_UP                                  0x18003
+HID_DOWN                                0x18004
+HID_PGUP                                0x18005
+HID_PGDOWN                              0x18006
+ 
+// Prompts (IDP_*) 
+ 
+// Resources (IDR_*) 
+HIDR_MAINFRAME                          0x20080
+HIDR_EXTRACT                            0x20084
+HIDR_NFO                                0x20097
+HIDR_NFOACCEL                           0x20099
+ 
+// Dialogs (IDD_*) 
+HIDD_ABOUTBOX                           0x20064
+HIDD_ZIPALOT_DIALOG                     0x20066
+HIDD_UNZIPDLG                           0x20082
+HIDD_PASSWORDDLG                        0x20083
+HIDD_FILECHECK                          0x20088
+HIDD_WHATIFDLG                          0x2008C
+HIDD_HELPDLG                            0x2008D
+HIDD_POSTPROCESS                        0x2008E
+HIDD_EXPERTFILTER                       0x20090
+HIDD_SIMPLEFILTER                       0x20091
+HIDD_WIZ1                               0x20092
+HIDD_WIZ2                               0x20093
+HIDD_WIZ3                               0x20094
+HIDD_WIZ4                               0x20095
+HIDD_WIZUNZIP                           0x20096
+HIDD_WIZERROR                           0x20097
+HIDD_WIZEND                             0x20098
+HIDD_TIPDLG                             0x2009A
+HIDD_CONFIG                             0x2009B
+ 
+// Frame Controls (IDW_*) 

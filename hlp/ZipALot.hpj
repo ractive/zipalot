@@ -1,0 +1,20 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=12 Hall Zeck
+NOTES=0
+LCID=0x407 0x0 0x0 ; Deutsch (Deutschland)
+REPORT=Yes
+CONTENTS=IDH_310
+TMPDIR=D:\Eigene Dateien\VisualC\ZipALot\hlp
+HLP=ZIPALOT.HLP
+
+[FILES]
+AfxDlg.rtf
+
+[MAP]
+IDH_310=0
+IDH_510=1
+
+[WINDOWS]
+main="",(40,131,768,501),27904,(r11206655),(r13160660),1
