@@ -1,4 +1,4 @@
-Name "Spinner Plus"
+Name "ZipALot"
 LicenseText "Please read and agree to this license before continuing."
 LicenseData license.txt
 ComponentText "This will install ZipALot on your system. Select which options you want set up."

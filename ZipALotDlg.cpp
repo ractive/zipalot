@@ -637,7 +637,9 @@ void CZipALotDlg::OnOK()
 
 		m_UnzipInfo.sFilter = token;
 		
-		pExtractor->Init();
+		if (!pExtractor->Init()) {
+			return;
+		}
 		pExtractor->unzipInfo = m_UnzipInfo;
 
 		nRet = pExtractor->ExtractAll(m_sSourceDir, m_sTargetDir);

@@ -144,7 +144,7 @@ int WINAPI CUnzip::password(char * szPassword, int n, const char * szMessage, co
 	BOOL bForce = strcmp(szMessage, "Password incorrect--reenter: ") == 0;
 
 	LPTSTR sPwd;
-	int nRet = PromptPassword(&sPwd, szFileName, m_szCurZipFile, szMessage, TRUE);
+	int nRet = PromptPassword(&sPwd, szFileName, m_szCurZipFile, szMessage, bForce);
 	if (nRet == IDOK && strlen(sPwd) > 0) {
 		strcpy(szPassword, sPwd);
 		return IZ_PW_ENTERED;

@@ -159,7 +159,7 @@ CAPTION "About ZipALot"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,163,44,20,20
-    LTEXT           "ZipALot Version 3.21\r\n25.. May 2001",IDC_STATIC,7,7,
+    LTEXT           "ZipALot Version 3.22\r\n03. April 2002",IDC_STATIC,7,7,
                     119,18,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,150,7,50,14,WS_GROUP
     LTEXT           "(c) by Jean-Pierre Bergamin",IDC_MAIL,7,31,137,8
@@ -177,7 +177,7 @@ STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "ZipALot"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     COMBOBOX        IDC_SOURCEDIR,46,37,154,51,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
@@ -707,14 +707,14 @@ BEGIN
             VALUE "Comments", "Licensed under the GPL\0"
             VALUE "CompanyName", "@ractive Software\0"
             VALUE "FileDescription", "ZipALot\0"
-            VALUE "FileVersion", "3.21\0"
+            VALUE "FileVersion", "3.22\0"
             VALUE "InternalName", "ZipALot\0"
             VALUE "LegalCopyright", "Copyright (C) 2000 by J.P. Bergamin under the GPL\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "ZipALot.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "ZipALot\0"
-            VALUE "ProductVersion", "3.21\0"
+            VALUE "ProductVersion", "3.22\0"
             VALUE "SpecialBuild", "\0"
         END
     END
