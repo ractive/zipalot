@@ -56,6 +56,7 @@ CExtract::CExtract(CDialog * pUnzipDlg)
 	memset(&unzipInfo, 0, sizeof(unzipInfo));
 	m_bPwdSet = FALSE;
 	m_sPassword = "";
+	InsertFile = NULL;
 }
 
 CExtract::~CExtract()
@@ -315,6 +316,7 @@ UINT CExtract::ExtractThreadProc(LPVOID lpParam)
 		}
 
 		nRet = m_pPseudoThis->Extract((LPTSTR)(LPCTSTR)sPath, sNewDir);
+
 		if (nRet != EX_OK) {
 			ReportError(nRet);
 			// If the disk is full, we don't try processing the other
@@ -409,4 +411,33 @@ int CExtract::CountFiles(LPCTSTR sFilePath)
 	}
 
 	return nFiles;
+}
+
+BOOL CExtract::CanOverwrite(const CString &sDest, UINT FileTime)
+{
+	CFileFind finder;
+	if (finder.FindFile(sDest)) {
+		if (!unzipInfo.bOverwrite) {
+			// No overwriting allowed
+			return FALSE;
+		}
+		if (unzipInfo.bOnlyNewer) {
+			finder.FindNextFile();
+			FILETIME existingFTime, localExistingFTime;
+			finder.GetLastWriteTime(&existingFTime);
+			FileTimeToLocalFileTime(&existingFTime, &localExistingFTime);
+
+			WORD existingDate, existingTime;
+			FileTimeToDosDateTime(&localExistingFTime, &existingDate, &existingTime);
+			if (existingDate > HIWORD(FileTime)) {
+				return FALSE;
+			}
+			if (existingDate == HIWORD(FileTime) && existingTime >= LOWORD(FileTime)) {
+				return FALSE;
+			}
+
+		}
+	}
+
+	return TRUE;
 }

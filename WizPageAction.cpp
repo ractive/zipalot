@@ -445,10 +445,10 @@ CString CWizPageAction::CreateTipText()
 			finder.Close();
 
 			if (nFiles > 2) {
-				sTipText += "- " + sFile + " seems to be the main archive.\r\n        >>> Extract it\r\n";
+				sTipText += "- " + sFile + "\r\nseems to be the main archive.\r\n        >>> Extract it\r\n";
 			}
 			else {
-				sTipText += "- " + sFile + " is a single archive; probably a crack\r\n        >>> Extract it to the installation dir\r\n";
+				sTipText += "- " + sFile + "\r\nis a single archive; nprobably a crack\r\n        >>> Extract it to the installation dir\r\n";
 			}
 		}
 		else if (sExt.CompareNoCase("exe") == 0) {

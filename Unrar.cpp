@@ -240,7 +240,7 @@ errorCode CUnrar::Extract(const LPCTSTR sFileName, const LPCTSTR sDestination)
 		CString sFinalDest = sD;
 		GetDestName(sFinalDest, HeaderData.FileName);
 		
-		bExtract = CanOverwrite(sFinalDest, &HeaderData);
+		bExtract = CanOverwrite(sFinalDest, HeaderData.FileTime);
 
 		if (bExtract && unzipInfo.sExFilter != NULL) {
 			bExtract = FALSE;
@@ -287,14 +287,40 @@ errorCode CUnrar::Extract(const LPCTSTR sFileName, const LPCTSTR sDestination)
 		}
 
 		int nOp = 0;
+		
+		
 		if (bExtract) {
-			nOp = RAR_EXTRACT;
-			if (!bIsDir) {
-				g_sListCurfiles.AddTail(GetFileName(HeaderData.FileName));
-				m_pPseudoThis->m_pUnzipDlg->PostMessage(WM_EXTRACT_CURFILE, 0, 0);
+			nOp = unzipInfo.bExtract ? RAR_EXTRACT : RAR_TEST;
+			if (bIsDir) {
+				nOp = unzipInfo.bRecreateDir ? RAR_EXTRACT : RAR_SKIP;
 			}
 			else {
-				nOp = unzipInfo.bRecreateDir ? RAR_EXTRACT : RAR_SKIP;
+				g_sListCurfiles.AddTail(GetFileName(HeaderData.FileName));
+				m_pPseudoThis->m_pUnzipDlg->PostMessage(WM_EXTRACT_CURFILE, 0, 0);
+				if (m_pPseudoThis->unzipInfo.bExtract == FALSE) {
+					if (m_pPseudoThis->InsertFile != NULL) {
+						FILETIME ft;
+						DosDateTimeToFileTime(HIWORD(HeaderData.FileTime), LOWORD(HeaderData.FileTime), &ft);
+						SYSTEMTIME st;
+						FileTimeToSystemTime(&ft, &st);
+
+
+						//time.GetAsSystemTime(st);
+						char sTime[15];
+						char sDate[15];
+						char sDateTime[31];
+						sDateTime[0] = '\0';
+
+						// Or use LOCALE_USER_DEFAULT???
+						GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_SHORTDATE, &st, NULL, sDate, 15);
+						GetTimeFormat(LOCALE_SYSTEM_DEFAULT, TIME_NOSECONDS, &st, NULL, sTime, 15);
+						strcpy(sDateTime, sDate);
+						strcat(sDateTime, " ");
+						strcat(sDateTime, sTime);
+
+						m_pPseudoThis->InsertFile(GetFileName(HeaderData.FileName), HeaderData.UnpSize, HeaderData.PackSize, 1, 'c', sDateTime);
+					}	
+				}
 			}
 		}
 		else {
@@ -407,37 +433,6 @@ int CUnrar::CheckForPassword(HANDLE hRARFile, RARHeaderData *HeaderData)
 	}
 
 	return EX_OK;
-}
-
-BOOL CUnrar::CanOverwrite(const CString &sDest, RARHeaderData * HeaderData)
-{
-	CFileFind finder;
-	if (finder.FindFile(sDest)) {
-		if (!unzipInfo.bOverwrite) {
-			// No overwriting allowed
-			return FALSE;
-		}
-		if (unzipInfo.bOnlyNewer) {
-			finder.FindNextFile();
-			FILETIME existingFTime, localExistingFTime;
-			finder.GetLastWriteTime(&existingFTime);
-			FileTimeToLocalFileTime(&existingFTime, &localExistingFTime);
-
-			WORD existingDate, existingTime;
-			FileTimeToDosDateTime(&localExistingFTime, &existingDate, &existingTime);
-			//UINT hD = HIWORD(HeaderData->FileTime);
-			//UINT lD = LOWORD(HeaderData->FileTime);
-			if (existingDate > HIWORD(HeaderData->FileTime)) {
-				return FALSE;
-			}
-			if (existingDate == HIWORD(HeaderData->FileTime) && existingTime >= LOWORD(HeaderData->FileTime)) {
-				return FALSE;
-			}
-
-		}
-	}
-
-	return TRUE;
 }
 
 void CUnrar::GetDestName(CString &sDest, LPCTSTR sFileName)

@@ -59,7 +59,6 @@ void CExpertPage::DoDataExchange(CDataExchange* pDX)
 		return;
 	}
 
-	DDX_Check(pDX, IDC_FILTERCHECK, *m_pbFilter);
 	DDX_Check(pDX, IDC_EXTRACTFILTERCHECK, *m_pbExtractCheck);
 	DDX_Check(pDX, IDC_DONTEXTRACTFILTERCHECK, *m_pbDontExtractCheck);
 	DDX_Check(pDX, IDC_CASEINSENSITIV, m_pUnzipInfo->bCaseInsensitive);
@@ -88,7 +87,6 @@ void CExpertPage::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CExpertPage, CPropertyPage)
 	//{{AFX_MSG_MAP(CExpertPage)
-	ON_BN_CLICKED(IDC_FILTERCHECK, OnFilterCheck)
 	ON_BN_CLICKED(IDC_EXTRACTFILTERCHECK, OnExtractFilterCheck)
 	ON_BN_CLICKED(IDC_DONTEXTRACTFILTERCHECK, OnDontExtractFilterCheck)
 	//}}AFX_MSG_MAP
@@ -101,9 +99,9 @@ END_MESSAGE_MAP()
 
 void CExpertPage::OnFilterCheck() 
 {
-	UpdateData(TRUE);
+	/*UpdateData(TRUE);
 	// Set the edit box to readonly
-	((CEdit *)GetDlgItem(IDC_FILTER))->SetReadOnly(!*m_pbFilter);	
+	((CEdit *)GetDlgItem(IDC_FILTER))->SetReadOnly(!*m_pbFilter);	*/
 }
 
 void CExpertPage::OnExtractFilterCheck() 
@@ -129,7 +127,6 @@ BOOL CExpertPage::OnInitDialog()
 	m_ToolTip.Create(this);
 	m_ToolTip.Activate(TRUE);
 
-	m_ToolTip.AddTool(GetDlgItem(IDC_FILTERCHECK), IDC_FILTERCHECK);
 	m_ToolTip.AddTool(GetDlgItem(IDC_EXTRACTFILTERCHECK), IDC_FILTERCHECK);
 	m_ToolTip.AddTool(GetDlgItem(IDC_DONTEXTRACTFILTERCHECK), IDC_FILTERCHECK);
 	m_ToolTip.AddTool(GetDlgItem(IDC_OVERWRITE), IDC_OVERWRITE);

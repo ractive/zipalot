@@ -107,6 +107,13 @@ void WINAPI CUnzip::ReceiveDllMessage(unsigned long nUnpacked, unsigned long nPa
 			sName = sFileName + "\\" + sName;
 		}
 
+		CString sDest = m_pPseudoThis->unzipInfo.sTarget;
+		if (sDest.Right(1) != "\\") {
+			sDest += "\\";
+		}
+
+		sDest += sName;
+
 		// Build the date
 		// Y2K fix ;-)
 		if (nYear > 38) {
@@ -115,11 +122,21 @@ void WINAPI CUnzip::ReceiveDllMessage(unsigned long nUnpacked, unsigned long nPa
 		else {
 			nYear += 2000;
 		}
-
 		CTime time(nYear, nMonth, nDay, nHour, nMinute, 00);
-
 		SYSTEMTIME st;
+		FILETIME ft;
+		WORD dos_date = 0;
+		WORD dos_time = 0;
+
 		time.GetAsSystemTime(st);
+		SystemTimeToFileTime(&st, &ft);
+
+		FileTimeToDosDateTime(&ft, &dos_date, &dos_time);
+
+		if (!m_pPseudoThis->CanOverwrite(sDest, MAKELONG(dos_date, dos_time))) {
+			return;
+		}
+
 		char sTime[15];
 		char sDate[15];
 		char sDateTime[31];

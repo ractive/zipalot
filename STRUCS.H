@@ -117,7 +117,10 @@
                                 // but this field can be used to change the
                                 // password at callback function calls
 
-          CHAR  Reserved1[64];  // has to be filled with zeros
+          BOOL UseVBStructures; //  passes structures to callback functions
+          			//  much better suited for Visual Basic
+
+          CHAR  Reserved1[60];  // has to be filled with zeros
 
         //--------------------------- fields for ACE only ---------------------
 
@@ -180,7 +183,6 @@
 
                                 //  Called to let the application know about
                                 //  the progress of operations.
-
 
         //-------------------------- different new fields ---------------------
           CHAR  Reserved3[64];  // has to be filled with zeros

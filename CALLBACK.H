@@ -462,7 +462,7 @@
           pACEGlobalDataStruc   GlobalData;     // see tACEGlobalDataStruc
           pACEArchiveDataStruc  ArchiveData;    // see tACEArchiveDataStruc
           pACEFileDataStruc     FileData;       // see tACEFileDataStruc
-          BOOL CRCOk;                           // CRC-check result
+          BOOL   CRCOk;                         // CRC-check result
         } tACECallbackCRCCheckStruc,
          *pACECallbackCRCCheckStruc;
 
@@ -1516,7 +1516,7 @@
                                                 // lowing structures is used
           tACECallbackArchiveStruc      Archive;
           tACECallbackArchivedFileStruc ArchivedFile;
-          tACECallbackArchivedFileStruc RealFile;
+          tACECallbackRealFileStruc	RealFile;
           tACECallbackProgressStruc     Progress;
           tACECallbackCRCCheckStruc     CRCCheck;
         } tACEStateCallbackProcStruc;

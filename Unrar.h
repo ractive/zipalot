@@ -46,7 +46,6 @@ public:
 	
 private:
 	void GetDestName(CString &sDest, LPCTSTR sFileName);
-	BOOL CanOverwrite(const CString &sDest, RARHeaderData * HeaderData);
 	int CheckForPassword(HANDLE hRarFile, RARHeaderData * HeaderData);
 	static void ReportError(int error, LPCTSTR sFile = NULL);
 	static int ProcessDataProc(unsigned char *Addr,int Size);

@@ -2,7 +2,7 @@ Name "ZipALot"
 LicenseText "Please read and agree to this license before continuing."
 LicenseData license.txt
 ComponentText "This will install ZipALot on your system. Select which options you want set up."
-DirText "Select a directory to install Spinner Plus in."
+DirText "Select a directory to install ZipALot in."
 UninstallText "This will uninstall ZipALot. Hit Next to uninstall, or Cancel to cancel."
 UninstallExeName uninst-zipalot.exe
 OutFile ZipALot.exe

@@ -27,6 +27,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "ZipALot.h"
 #include "WhatIfDlg.h"
 #include "Unzip.h"
+#include "Unace.h"
+#include "Unrar.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -37,7 +39,6 @@ static char THIS_FILE[] = __FILE__;
 #define WM_READ (WM_USER + 23)
 
 extern HANDLE hStop;
-
 
 CWhatIfDlg * CWhatIfDlg::m_pPseudoThis = NULL;
 
@@ -263,25 +264,85 @@ int CWhatIfDlg::GetIconIndex(const CString &sPath)
 UINT CWhatIfDlg::FillFileList(LPVOID lParam)
 {
 	CWaitCursor wait;
-	// Do the unzipping...
-	CUnzip unzipper(NULL);
-	unzipper.Init();
-	hStop = CreateEvent(NULL, FALSE, FALSE, NULL);
-	unzipper.InsertFile = &InsertFile;
 
+	CExtract * pExtractor = NULL;
+
+	// Process all the filters
+	CString sFilter = m_pPseudoThis->m_pUnzipInfo->sFilter;
+	sFilter.Replace("/", " / ");
+	
+	int nCounter = 0;
+	errorCode nRet;
+	BOOL bNoArchives = TRUE;
 	m_pPseudoThis->m_pUnzipInfo->bExtract = FALSE;
-	unzipper.unzipInfo = *m_pPseudoThis->m_pUnzipInfo;
-	
-	m_pPseudoThis->m_bCanClose = FALSE;
-	int nRet = unzipper.ExtractAll(m_pPseudoThis->m_pUnzipInfo->sSource, m_pPseudoThis->m_pUnzipInfo->sTarget);
-	m_pPseudoThis->m_bCanClose = TRUE;
 
-	// This gives an access violation in MFC42.DLL in the releaseversion :-(
-	// Why?
-	//m_pPseudoThis->SendMessage(WM_READ);
-	
-	m_pPseudoThis->OnRead();
-	
+	char seps[] = "/";
+	char * token = strtok((LPTSTR)(LPCTSTR)sFilter, seps);
+	while( token != NULL )
+	{
+		// While there are tokens in "string"
+		nCounter++;
+
+		// Remove trailing spaces
+		while (*token == ' ') {
+			token++;
+		}
+
+		if (strlen(token) < 2) {
+			token = strtok( NULL, seps );
+			continue;
+		}
+		switch (nCounter) {
+			case 1:
+				pExtractor = new CUnzip(m_pPseudoThis);
+				m_pPseudoThis->m_pUnzipInfo->type = ZIP;
+				break;
+			case 2:
+				pExtractor = new CUnrar(m_pPseudoThis);
+				m_pPseudoThis->m_pUnzipInfo->type = RAR;
+				break;
+			case 3:
+				pExtractor = new CUnace(m_pPseudoThis);
+				m_pPseudoThis->m_pUnzipInfo->type = ACE;
+				break;
+		}
+		
+		pExtractor->InsertFile = &InsertFile;
+
+		if (pExtractor == NULL) {
+			break;
+		}
+
+		sFilter = token;
+		m_pPseudoThis->m_pUnzipInfo->sFilter = sFilter;
+
+		if (!pExtractor->Init()) {
+			return 1;
+		}
+		pExtractor->unzipInfo = *m_pPseudoThis->m_pUnzipInfo;
+		
+		m_pPseudoThis->m_bCanClose = FALSE;
+		nRet = pExtractor->ExtractAll(m_pPseudoThis->m_pUnzipInfo->sSource, m_pPseudoThis->m_pUnzipInfo->sTarget);
+		m_pPseudoThis->m_bCanClose = TRUE;
+		//m_pPseudoThis->SendMessage(WM_READ);
+		m_pPseudoThis->OnRead();
+
+		bNoArchives &= nRet == EX_NO_ARCHIVES;
+		TRACE("Return value thread %d\r\n", nRet);
+		delete pExtractor;
+		pExtractor = NULL;
+
+		if (nRet == EX_CANCELLED) {
+			//m_pPseudoThis->CancelStatus();
+			break;
+		}
+		if (nRet == EX_OK) {
+			
+		}
+		// Get next token:
+		token = strtok( NULL, seps );
+	}
+
 	return nRet;
 }
 

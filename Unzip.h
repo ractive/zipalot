@@ -47,7 +47,7 @@ public:
 
 	CUnzip(CDialog * pUnzipDlg);
 	virtual ~CUnzip();
-	void (*InsertFile)(CString sName, DWORD dwSize, DWORD dwPackedSize, int nRatio, char cEncrypted, CString sDateTime);
+	//void (*InsertFile)(CString sName, DWORD dwSize, DWORD dwPackedSize, int nRatio, char cEncrypted, CString sDateTime);
 	CString GetDLLName();
 
 private:

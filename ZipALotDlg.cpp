@@ -709,6 +709,10 @@ BOOL CZipALotDlg::PreTranslateMessage(MSG* pMsg)
 
 void CZipALotDlg::OnCheckFiles() 
 {
+	m_PropSheet.PressButton(PSBTN_APPLYNOW);
+
+	UpdateData();
+
 	m_UnzipInfo.sSource = m_sSourceDir;
 	m_UnzipInfo.sTarget = m_sTargetDir;
 

@@ -35,6 +35,8 @@ static char THIS_FILE[]=__FILE__;
 
 
 BOOL CUnace::m_bQuiet = FALSE;
+BOOL CUnace::m_bOverwriteReq = TRUE;
+
 errorCode CUnace::m_OrigError = EX_OK;
 extern HANDLE hStop;
 extern CStringList g_sListCurZIPfiles;
@@ -129,42 +131,80 @@ BOOL CUnace::IsArchive(LPCTSTR sFilePath)
 errorCode CUnace::Extract(const LPCTSTR sFileName, const LPCTSTR sDestination)
 {
 	m_bQuiet = FALSE;
-	tACEExtractStruc Extract = {0};
 	CString sInc, sEx;
+	int nRet = 0;
 
-	if (unzipInfo.sExFilter == NULL) {
-		Extract.Files.FileList = "*";
+	if (unzipInfo.bExtract) {
+		tACEExtractStruc Extract = {0};
+
+		if (unzipInfo.sExFilter == NULL) {
+			Extract.Files.FileList = "*";
+		}
+		else {
+			sInc = unzipInfo.sExFilter;
+			sInc.Replace('/', 0xd);
+			Extract.Files.FileList = (LPTSTR)(LPCTSTR)sInc;
+		}
+
+		if (unzipInfo.sDontExFilter == NULL) {
+			Extract.Files.ExcludeList = "";
+		}
+		else {
+			sEx = unzipInfo.sDontExFilter;
+			sEx.Replace('/', 0xd);
+			Extract.Files.ExcludeList = (LPTSTR)(LPCTSTR)sEx;
+		}
+
+		Extract.Files.SourceDir      = "";      // archive main directory is
+												// base dir for FileList
+		Extract.Files.FullMatch      = 0;       // also extract files
+												// partially matching
+
+		Extract.DestinationDir       = (LPTSTR)(LPCTSTR)sDestination; // directory to extract to
+		Extract.ExcludePath          = !unzipInfo.bRecreateDir;  // extract files with path?
+		Extract.DecryptPassword      = "";             // no encrypted file expected
+		
+		m_OrigError = EX_OK;
+
+		nRet = ACEExtractProc((LPTSTR)(LPCTSTR)sFileName, &Extract);
+
+		if (m_OrigError != EX_OK) {
+			return m_OrigError;
+		}
 	}
 	else {
-		sInc = unzipInfo.sExFilter;
-		sInc.Replace('/', 0xd);
-		Extract.Files.FileList = (LPTSTR)(LPCTSTR)sInc;
-	}
+		m_bQuiet = TRUE;
+		tACEListStruc Test = {0};
 
-	if (unzipInfo.sDontExFilter == NULL) {
-		Extract.Files.ExcludeList = "";
-	}
-	else {
-		sEx = unzipInfo.sDontExFilter;
-		sEx.Replace('/', 0xd);
-		Extract.Files.ExcludeList = (LPTSTR)(LPCTSTR)sEx;
-	}
+		Test.Files.SourceDir   = "";        // archive main directory is
+										  // base directory for FileList
+		if (unzipInfo.sExFilter == NULL) {
+			Test.Files.FileList = "*";
+		}
+		else {
+			sInc = unzipInfo.sExFilter;
+			sInc.Replace('/', 0xd);
+			Test.Files.FileList = (LPTSTR)(LPCTSTR)sInc;
+		}
 
-	Extract.Files.SourceDir      = "";      // archive main directory is
-											// base dir for FileList
-	Extract.Files.FullMatch      = 0;       // also extract files
-											// partially matching
+		if (unzipInfo.sDontExFilter == NULL) {
+			Test.Files.ExcludeList = "";
+		}
+		else {
+			sEx = unzipInfo.sDontExFilter;
+			sEx.Replace('/', 0xd);
+			Test.Files.ExcludeList = (LPTSTR)(LPCTSTR)sEx;
+		}
+		Test.Files.FullMatch   = 0;         // also test files partially matching
 
-	Extract.DestinationDir       = (LPTSTR)(LPCTSTR)sDestination; // directory to extract to
-	Extract.ExcludePath          = !unzipInfo.bRecreateDir;  // extract files with path?
-	Extract.DecryptPassword      = "";             // no encrypted file expected
-	
-	m_OrigError = EX_OK;
+		m_OrigError = EX_OK;
 
-	int nRet = ACEExtractProc((LPTSTR)(LPCTSTR)sFileName, &Extract);
+		nRet = ACEListProc((LPTSTR)(LPCTSTR)sFileName, &Test);
 
-	if (m_OrigError != EX_OK) {
-		return m_OrigError;
+		if (m_OrigError != EX_OK) {
+			return m_OrigError;
+		}
+
 	}
 
 	return GetErrorCode(nRet);
@@ -237,14 +277,8 @@ int CUnace::HandleStateStartArchive(pACECallbackArchiveStruc Archive)
 		}
 	}
 
-	//TRACE(ActionStr, Archive->ArchiveData->ArchiveName);
+	TRACE(ActionStr, Archive->ArchiveData->ArchiveName);
 #endif
-	/*if (!m_bQuiet && m_pPseudoThis->m_pUnzipDlg) {
-		CString sFileName = Archive->ArchiveData->ArchiveName;
-		sFileName = sFileName.Right(sFileName.GetLength() - sFileName.ReverseFind('\\') - 1);
-		strcpy(curfile, Archive->ArchiveData->ArchiveName);
-		m_pPseudoThis->m_pUnzipDlg->PostMessage(WM_EXTRACT_CURFILE, 0, (long)curfile);
-	}*/
 
 	return CancelStatus();
 }
@@ -253,57 +287,79 @@ int CUnace::HandleStateStartArchive(pACECallbackArchiveStruc Archive)
 
 int CUnace::HandleStateStartFile(pACECallbackArchivedFileStruc ArchivedFile)
 {
-#ifdef _DEBUG	
-
-	LPSTR     ActionStr;
-
 	switch (ArchivedFile->Operation)
 	{
 		case ACE_CALLBACK_OPERATION_LIST:
 		{
-		  ActionStr = "Found";
+		 TRACE("Found");
+			if (m_pPseudoThis->InsertFile != NULL) {
+				CString sDest = m_pPseudoThis->unzipInfo.sTarget;
+				if (sDest.Right(1) != "\\") {
+					sDest += "\\";
+				}
+
+				sDest += ArchivedFile->FileData->SourceFileName;
+
+				if (m_pPseudoThis->CanOverwrite(sDest, ArchivedFile->FileData->Time)) {
+					FILETIME ft;
+					DosDateTimeToFileTime(HIWORD(ArchivedFile->FileData->Time), LOWORD(ArchivedFile->FileData->Time), &ft);
+					SYSTEMTIME st;
+					FileTimeToSystemTime(&ft, &st);
+
+
+					//time.GetAsSystemTime(st);
+					char sTime[15];
+					char sDate[15];
+					char sDateTime[31];
+					sDateTime[0] = '\0';
+
+					// Or use LOCALE_USER_DEFAULT???
+					GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_SHORTDATE, &st, NULL, sDate, 15);
+					GetTimeFormat(LOCALE_SYSTEM_DEFAULT, TIME_NOSECONDS, &st, NULL, sTime, 15);
+					strcpy(sDateTime, sDate);
+					strcat(sDateTime, " ");
+					strcat(sDateTime, sTime);
+
+					m_pPseudoThis->InsertFile(ArchivedFile->FileData->SourceFileName, ArchivedFile->FileData->Size, ArchivedFile->FileData->CompressedSize, 1, 'c', sDateTime);
+
+				}
+			}
 
 		  break;
 		}
 
 		case ACE_CALLBACK_OPERATION_TEST:
 		{
-		  ActionStr = "Testing";
+		  TRACE("Testing");
 
 		  break;
 		}
 
 		case ACE_CALLBACK_OPERATION_ANALYZE:
 		{
-		  ActionStr = "Analyzing";
+		  TRACE("Analyzing");
 
 		  break;
 		}
 
 		case ACE_CALLBACK_OPERATION_EXTRACT:
 		{
-		  ActionStr = "Extracting";
+		  TRACE("Extracting");
 		  break;
 		}
 
 		default:
 		{
-		  ActionStr = "unknown operation on";
+		  TRACE("unknown operation on");
 
 		  break;
 		}
 	}
 
-/*	TRACE("  %s %s  (%I64d byte uncompressed, %I64d byte compressed)\n",
-		 ActionStr, ArchivedFile->FileData->SourceFileName,
+	TRACE("  %s  (%I64d byte uncompressed, %I64d byte compressed)\n",
+		 ArchivedFile->FileData->SourceFileName,
 		 ArchivedFile->FileData->Size,
-		 ArchivedFile->FileData->CompressedSize);*/
-#endif
-	if (!m_bQuiet && m_pPseudoThis->m_pUnzipDlg) {
-		g_sListCurfiles.AddTail(ArchivedFile->FileData->SourceFileName);
-		//m_pPseudoThis->m_pUnzipDlg->PostMessage(WM_EXTRACT_CURFILE, 0, (long)ArchivedFile->FileData->SourceFileName);
-		m_pPseudoThis->m_pUnzipDlg->PostMessage(WM_EXTRACT_CURFILE, 0, 0);
-	}
+		 ArchivedFile->FileData->CompressedSize);
 
 	return CancelStatus();
 }
@@ -487,7 +543,7 @@ int CUnace::HandleRequestArchivedFile(pACECallbackArchivedFileStruc Request)
 		case ACE_CALLBACK_REQUEST_OVERWRITESYSFILE:
 			// Hmmm? Strange naming of the return values...
 			nResult = unzipInfo.bOverwrite ? ACE_CALLBACK_RETURN_OK : ACE_CALLBACK_RETURN_NO;
-		
+			m_bOverwriteReq = unzipInfo.bOverwrite;
 			break;
 
 		case ACE_CALLBACK_REQUEST_PASSWORD:
@@ -535,7 +591,6 @@ int __stdcall CUnace::StateProc(pACEStateCallbackProcStruc State)
 			if (State->Archive.Code == ACE_CALLBACK_STATE_STARTARCHIVE) {
 				return HandleStateStartArchive(&State->Archive);
 			}
-
 			break;
 		}
 
@@ -544,10 +599,6 @@ int __stdcall CUnace::StateProc(pACEStateCallbackProcStruc State)
 				case ACE_CALLBACK_STATE_STARTFILE: {
 					return HandleStateStartFile(&State->ArchivedFile);
 				}
-
-				case ACE_CALLBACK_STATE_ENDNOCRCCHECK: {
-
-				}
 			}
 
 			break;
@@ -555,7 +606,8 @@ int __stdcall CUnace::StateProc(pACEStateCallbackProcStruc State)
 
 		case ACE_CALLBACK_TYPE_PROGRESS: {
 			if (State->Progress.Code == ACE_CALLBACK_STATE_PROGRESS) {
-/*				TRACE("    processed: %I64d of %I64d bytes (%I64d of %I64d bytes)\n",
+				/*int x = 0;
+				TRACE("    processed: %I64d of %I64d bytes (%I64d of %I64d bytes)\n",
 					   State->Progress.ProgressData->FileProcessedSize,
 					   State->Progress.ProgressData->FileSize,
 					   State->Progress.ProgressData->TotalProcessedSize,
@@ -564,12 +616,44 @@ int __stdcall CUnace::StateProc(pACEStateCallbackProcStruc State)
 
 			break;
 		}
-
 		case ACE_CALLBACK_TYPE_CRCCHECK: {
 			if (State->CRCCheck.Code == ACE_CALLBACK_STATE_ENDCRCCHECK) {
 				if(!State->CRCCheck.CRCOk) {
 					ReportError(m_bPwdSet ? EX_BADPWD : EX_CRC, GetFileName(State->ArchivedFile.FileData->SourceFileName));
 				}
+				else if (m_bOverwriteReq) {
+					if (m_pPseudoThis->m_pUnzipDlg) {
+						g_sListCurfiles.AddTail(State->ArchivedFile.FileData->SourceFileName);
+						if (!m_bQuiet && m_pPseudoThis->unzipInfo.bExtract) {
+							m_pPseudoThis->m_pUnzipDlg->PostMessage(WM_EXTRACT_CURFILE, 0, 0);
+						}
+						else if (m_pPseudoThis->InsertFile != NULL) {
+							FILETIME ft;
+							DosDateTimeToFileTime(HIWORD(State->ArchivedFile.FileData->Time), LOWORD(State->ArchivedFile.FileData->Time), &ft);
+							SYSTEMTIME st;
+							FileTimeToSystemTime(&ft, &st);
+
+
+							//time.GetAsSystemTime(st);
+							char sTime[15];
+							char sDate[15];
+							char sDateTime[31];
+							sDateTime[0] = '\0';
+
+							// Or use LOCALE_USER_DEFAULT???
+							GetDateFormat(LOCALE_SYSTEM_DEFAULT, DATE_SHORTDATE, &st, NULL, sDate, 15);
+							GetTimeFormat(LOCALE_SYSTEM_DEFAULT, TIME_NOSECONDS, &st, NULL, sTime, 15);
+							strcpy(sDateTime, sDate);
+							strcat(sDateTime, " ");
+							strcat(sDateTime, sTime);
+
+							m_pPseudoThis->InsertFile(State->ArchivedFile.FileData->SourceFileName, State->ArchivedFile.FileData->Size, State->ArchivedFile.FileData->CompressedSize, 1, 'c', sDateTime);
+						}
+					}
+				}
+			}
+			else if (State->CRCCheck.Code == ACE_CALLBACK_STATE_ENDNOCRCCHECK) {
+				int x = 0;
 			}
 
 			break;
@@ -614,7 +698,7 @@ int __stdcall CUnace::InfoProc(pACEInfoCallbackProcStruc Info)
 		}
 	}
 
-//	TRACE("Info: %s\n", InfoStr);
+	TRACE("Info: %s\n", InfoStr);
 #endif
 	return CancelStatus();
 }

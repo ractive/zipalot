@@ -600,7 +600,10 @@ void CFileCheckDlg::OnItemChangedFileList(NMHDR* pNMHDR, LRESULT* pResult)
 	m_nEncrypted = 0;
 
 	CUnzip unzipper(NULL);
-	unzipper.Init();
+	if (!unzipper.Init()) {
+		return;
+	}
+
 	CString sZIPFile = m_pUnzipInfo->sSource;
 	if (sZIPFile.Right(1) != "\\") {
 		sZIPFile += "\\";

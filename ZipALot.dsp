@@ -286,6 +286,10 @@ SOURCE=.\Bunzip2.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\CALLBACK.H
+# End Source File
+# Begin Source File
+
 SOURCE=.\ConfigDlg.h
 # End Source File
 # Begin Source File
@@ -397,6 +401,10 @@ SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\STRUCS.H
+# End Source File
+# Begin Source File
+
 SOURCE=.\structs.h
 # End Source File
 # Begin Source File
@@ -414,6 +422,10 @@ SOURCE=.\Unace.h
 # Begin Source File
 
 SOURCE=.\UNACE_.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\UNACEFNC.H
 # End Source File
 # Begin Source File
 

@@ -70,6 +70,8 @@ public:
 	static LPCTSTR GetFileName(LPCTSTR sFilePath);
 	errorCode ExtractAll(const LPCTSTR sSource, const LPCTSTR sTarget);
 	BOOL Init();
+	void (*InsertFile)(CString sName, DWORD dwSize, DWORD dwPackedSize, int nRatio, char cEncrypted, CString sDateTime);
+
 	
 	virtual CString GetDLLName() = 0;
 	virtual BOOL GetProcAddresses() = 0;
@@ -94,8 +96,10 @@ public:
 	void (*StepIt)();*/
 	CDialog * m_pUnzipDlg;
 	static tagUnzipInfo unzipInfo;
+	BOOL CanOverwrite(const CString &sDest, UINT FileTime);
 
 protected:
+
 	int CountFiles(LPCTSTR sFilePath);
 	static BOOL m_bPwdSet;
 	static int RequestFile(LPTSTR lpszFileName);

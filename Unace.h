@@ -56,6 +56,7 @@ protected:
 	static int HandleRequestArchivedFile(pACECallbackArchivedFileStruc Request);
 	virtual BOOL GetProcAddresses();
 private:
+	static BOOL m_bOverwriteReq;
 	static errorCode m_OrigError;
 	static int CancelStatus();
 	static BOOL m_bQuiet;

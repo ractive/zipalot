@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // WhatIfDlg.h : header file
 //
 
+#include <afxmt.h>
 #include "unzipinfo.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,6 +68,7 @@ protected:
 	afx_msg void OnClose();
 	afx_msg void OnHeaderClick(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
+
 	afx_msg void OnRead();
 	DECLARE_MESSAGE_MAP()
 private:
