@@ -1,0 +1,8 @@
+:Base  ZipALot.HLP
+:Title Contents Title
+1 ZipALot
+1 Main window=HIDD_ZIPALOT_DIALOG
+1 Filters=HIDD_ZIPALOT_DIALOG
+1 Options=HIDD_ZIPALOT_DIALOG
+1 Preview=HIDD_ZIPALOT_DIALOG
+1 Contact=HIDD_ZIPALOT_DIALOG

@@ -1,0 +1,20 @@
+ 
+// Commands (ID_* and IDM_*) 
+HIDM_ABOUTBOX                           0x10010
+ 
+// Prompts (IDP_*) 
+ 
+// Resources (IDR_*) 
+HIDR_MAINFRAME                          0x20080
+HIDR_EXTRACT                            0x20084
+ 
+// Dialogs (IDD_*) 
+HIDD_ABOUTBOX                           0x20064
+HIDD_ZIPALOT_DIALOG                     0x20066
+HIDD_UNZIPDLG                           0x20082
+HIDD_PASSWORDDLG                        0x20083
+HIDD_FILECHECK                          0x20088
+HIDD_WHATIFDLG                          0x2008C
+HIDD_HELPDLG                            0x2008D
+ 
+// Frame Controls (IDW_*) 
