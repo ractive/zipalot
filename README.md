@@ -125,6 +125,16 @@ From the WinHelp project (December 2000, version 3.0 user interface).
 
 Earlier versions (1.x, 2.x, 3.0 to 3.2, 1999 to mid-2001) are not preserved.
 
+### History of this repository
+
+ZipALot was never kept under version control, so the history consists of
+snapshots committed in chronological order with the newest source file's
+modification time as author date. The root commit is the author's working copy
+of 4 August 2001 recovered from a machine backup of 2001 (version string 3.21 in
+`ZipALot.rc`, `ReadMe.txt` still saying 3.2); it differs from the 3.22 release
+in only six files. The 3.22 release zip and the May 2002 working copy follow,
+then the help project, then the archive documentation.
+
 ## Notes on this archive
 
 - Excluded: the compiled installer `ZipALot.exe`, compiled `.HLP`/`.GID` help
