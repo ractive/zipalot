@@ -117,20 +117,21 @@ From the WinHelp project (December 2000, version 3.0 user interface).
 
 | Commit | Content |
 |---|---|
-| 1 | `ZipALot_src.zip` as published with release 3.22 (3 April 2002). |
-| 2 | The working copy with the last edits (8 May 2002): extraction error handling in `Extract.cpp`, `Unace.cpp`, `Unrar.cpp`, `Unzip.cpp`, `WhatIfDlg.cpp`, `WizPageAction.cpp`, updated ACE headers. |
-| 3 | The WinHelp project of the user help from the "Windows Help Designer" (December 2000 / January 2001). |
-| 4 | This README, licence files and screenshots. |
+| 1 | The working copy of 4 August 2001 from a backup of the author's machine: version 3.21 (25 May 2001), six files differ from 3.22. |
+| 2 | `ZipALot_src.zip` as published with release 3.22 (3 April 2002). |
+| 3 | The working copy with the last edits (8 May 2002): extraction error handling in `Extract.cpp`, `Unace.cpp`, `Unrar.cpp`, `Unzip.cpp`, `WhatIfDlg.cpp`, `WizPageAction.cpp`, updated ACE headers. |
+| 4 | The WinHelp project of the user help from the "Windows Help Designer" (December 2000 / January 2001). |
+| 5 | This README, licence files and screenshots. |
 
-Earlier versions (1.x, 2.x, 3.0 to 3.2, 1999 to 2001) are not preserved.
+Earlier versions (1.x, 2.x, 3.0 to 3.2, 1999 to mid-2001) are not preserved.
 
 ## Notes on this archive
 
 - Excluded: the compiled installer `ZipALot.exe`, compiled `.HLP`/`.GID` help
   files, Visual C++ IDE state files, `.old` backups of the ACE headers, and the
   duplicate help project folder. No unpacker DLLs were present in the sources.
-- Nothing had to be scrubbed; the only personal data are the author's own
-  `ractive.ch` addresses. The code contains hard-coded `C:\TEMP` and `C:\`
+- Scrubbed: the author's street address in the help source `hlp/AfxDlg.rtf`.
+  The remaining personal data are the author's own `ractive.ch` addresses. The code contains hard-coded `C:\TEMP` and `C:\`
   fallbacks.
 - Source files are Windows-1252 encoded with CRLF line endings and are stored
   byte-for-byte (`.gitattributes` disables text conversion).
