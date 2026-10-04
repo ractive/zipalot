@@ -141,3 +141,17 @@ Earlier versions (1.x, 2.x, 3.0 to 3.2, 1999 to 2001) are not preserved.
 GNU General Public License, version 2 (see `LICENSE` and the original
 `LICENSE.TXT`). Third-party headers and classes keep their own licences; see
 `THIRD_PARTY.md`.
+
+## Where it was published
+
+- The ractive.ch project page (archived):
+  <http://web.archive.org/web/20021001170620/http://www.ractive.ch/gpl/zipalot.html>.
+  Versions listed there: 2.1 (March 2001), 3.0 (mid 2001), 3.22.
+- Softpedia, "ZipALot 3.22" (GPL, 249 KB), 5,423 downloads by 2012:
+  <https://www.softpedia.com/get/Compression-tools/ZipALot.shtml>.
+- Brothersoft, 2,566 downloads by 2013 (archived):
+  <http://web.archive.org/web/20130711123140/http://www.brothersoft.com/zipalot-71322.html>.
+- Also listed on downloadsource.net (<https://www.downloadsource.net/8413/zipalot/>)
+  and Softonic (<https://zipalot.en.softonic.com/>).
+- Original screenshots from the ractive.ch page are in
+  `docs/screenshots/ractive.ch/`.
